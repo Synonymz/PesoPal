@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Foreground: monogram only on transparent background -->
+  <g font-family="Segoe UI, Arial, sans-serif" font-weight="700" text-anchor="middle" fill="#FFFFFF">
+	<text x="512" y="600" font-size="420">CL</text>
+  </g>
+</svg>

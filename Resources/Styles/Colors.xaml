@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+  <!-- Core palette -->
+  <Color x:Key="Navy">#0B2A5B</Color>
+  <Color x:Key="Blue">#0066F0</Color>
+  <Color x:Key="Green">#087F49</Color>
+  <Color x:Key="Muted">#5B6B84</Color>
+  <Color x:Key="PageBg">#EEF3FA</Color>
+
+  <!-- Extended tokens -->
+  <Color x:Key="Accent">#FFB300</Color>
+  <Color x:Key="TextPrimary">#0F1724</Color>
+  <Color x:Key="TextSecondary">#5B6B84</Color>
+  <Color x:Key="CardBg">#FFFFFF</Color>
+  <Color x:Key="SplashBg">#0066F0</Color>
+
+</ResourceDictionary>

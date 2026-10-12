@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+	<!-- Rounded square background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="200" ry="200" fill="#0066F0" />
+  <!-- Monogram CL centered (kept for reference) -->
+  <g id="monogram" font-family="Segoe UI, Arial, sans-serif" font-weight="700" text-anchor="middle" fill="#FFFFFF">
+	<text x="512" y="600" font-size="420">CL</text>
+  </g>
+</svg>

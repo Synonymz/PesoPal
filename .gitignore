@@ -1,0 +1,30 @@
+# Build results
+bin/
+obj/
+.vs/
+
+# User configuration
+*.user
+*.userprefs
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# NuGet
+packages/
+.nuget/
+
+# Local development
+local.settings.json
+*.log
+
+# Keep secure files out
+*.keystore
+
+# Android
+.gradle/
