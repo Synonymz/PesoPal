@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="rim" x1="0.15" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#FFF2A8"/><stop offset="0.45" stop-color="#FFC21A"/><stop offset="1" stop-color="#C77700"/>
+    </linearGradient>
+    <linearGradient id="groove" x1="0.85" y1="1" x2="0.15" y2="0">
+      <stop offset="0" stop-color="#FFE27A"/><stop offset="0.55" stop-color="#E59A00"/><stop offset="1" stop-color="#A85F00"/>
+    </linearGradient>
+    <linearGradient id="face" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#CFE3FF"/>
+    </linearGradient>
+    <linearGradient id="peso" gradientUnits="userSpaceOnUse" x1="380" y1="350" x2="680" y2="670">
+      <stop offset="0" stop-color="#1E7BFF"/><stop offset="1" stop-color="#0030A8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.45"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="faceclip"><circle cx="512" cy="500" r="206"/></clipPath>
+  </defs>
+  <circle cx="512" cy="512" r="500" fill="url(#glow)"/>
+  <g transform="translate(512 512) scale(1.22) translate(-512 -540)">
+  <!-- ground shadow -->
+  <ellipse cx="512" cy="792" rx="200" ry="30" fill="#001A66" opacity="0.28"/>
+  <ellipse cx="512" cy="792" rx="140" ry="18" fill="#001A66" opacity="0.25"/>
+  <!-- coin edge (thickness) -->
+  <circle cx="512" cy="524" r="250" fill="#B26A00"/>
+  <!-- rim -->
+  <circle cx="512" cy="500" r="250" fill="url(#rim)"/>
+  <circle cx="512" cy="500" r="226" fill="url(#groove)"/>
+  <!-- face -->
+  <circle cx="512" cy="500" r="206" fill="url(#face)"/>
+  <circle cx="512" cy="500" r="178" fill="none" stroke="#FFC21A" stroke-width="9" stroke-dasharray="1 24" stroke-linecap="round"/>
+  <!-- gloss -->
+  <g clip-path="url(#faceclip)">
+    <ellipse cx="450" cy="330" rx="250" ry="120" transform="rotate(-28 450 330)" fill="#FFFFFF" opacity="0.38"/>
+  </g>
+  <!-- peso shadow + glyph -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(512 500) scale(0.64) translate(-512 -511) translate(0 6)" stroke="#0A2A80" opacity="0.22">
+      <g transform="translate(-22 0)"><path d="M440 372 V650" stroke-width="44"/><path d="M440 372 H545 A86 86 0 0 1 545 544 H440" stroke-width="44"/><path d="M385 432 H684" stroke-width="24"/><path d="M385 490 H684" stroke-width="24"/></g>
+    </g>
+    <g transform="translate(512 500) scale(0.64) translate(-512 -511)" stroke="url(#peso)">
+      <g transform="translate(-22 0)"><path d="M440 372 V650" stroke-width="44"/><path d="M440 372 H545 A86 86 0 0 1 545 544 H440" stroke-width="44"/><path d="M385 432 H684" stroke-width="24"/><path d="M385 490 H684" stroke-width="24"/></g>
+    </g>
+  </g>
+  <path d="M300 330 A230 230 0 0 1 470 270" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" opacity="0.7"/>
+  <!-- sparkles -->
+  <path d="M742 244 Q742 290 788 290 Q742 290 742 336 Q742 290 696 290 Q742 290 742 244Z" fill="#FFFFFF" opacity="1"/><path d="M300 236 Q300 262 326 262 Q300 262 300 288 Q300 262 274 262 Q300 262 300 236Z" fill="#FFFFFF" opacity="0.9"/><path d="M770 618 Q770 640 792 640 Q770 640 770 662 Q770 640 748 640 Q770 640 770 618Z" fill="#FFFFFF" opacity="0.85"/>
+</g>
+</svg>

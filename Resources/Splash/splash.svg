@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Simple professional monogram logo: rounded square with CL letters -->
+  <rect x="10" y="10" width="180" height="180" rx="36" ry="36" fill="#0066F0" />
+  <text x="100" y="120" font-family="Segoe UI, Arial, sans-serif" font-size="88" font-weight="700" text-anchor="middle" fill="#FFFFFF">CL</text>
+  <circle cx="160" cy="40" r="10" fill="#FFFFFF" opacity="0.12" />
+</svg>

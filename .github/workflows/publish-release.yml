@@ -1,0 +1,69 @@
+name: Build and Publish APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install Java (required by Android build)
+        uses: android-actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-level: 34
+
+      - name: Restore NuGet packages
+        run: dotnet restore CashLedgerAndroid.slnx
+
+      - name: Build Android APK
+        run: |
+          dotnet publish CashLedgerAndroid.slnx -f net10.0-android -c Release -o artifacts/publish /p:AndroidSigningKeyStore="${{ secrets.ANDROID_KEYSTORE_PATH }}" /p:AndroidSigningKeyAlias="${{ secrets.ANDROID_KEY_ALIAS }}" /p:AndroidSigningKeyPass="${{ secrets.ANDROID_KEY_PASSWORD }}" /p:AndroidSigningStorePass="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}"
+
+      - name: Find APK
+        run: |
+          echo "Looking for APK in artifacts"
+          ls -la artifacts/publish
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload APK to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: artifacts/publish/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload latest.json as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: latest-json
+          path: gh-pages/latest.json
+
+      - name: Generate latest.json and push to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p tools
+          pwsh -NoProfile -NonInteractive -File tools/generate-latest.ps1 -Tag ${{ github.ref_name }} -AssetPath artifacts/publish/*.apk -Repo ${{ github.repository }} -Branch gh-pages -Push -UploadRelease

@@ -1,0 +1,82 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-android</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CashLedgerAndroid</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <SupportedOSPlatformVersion>24.0</SupportedOSPlatformVersion>
+    <ApplicationTitle>PesoPal</ApplicationTitle>
+    <ApplicationId>com.pesopal.app</ApplicationId>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <AndroidVersionCode>1791820575</AndroidVersionCode>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- App icon: use adaptive icon layers (background + foreground) to generate Android adaptive launcher icons -->
+    <MauiIcon Include="Resources\AppIcon\appicon_bg.svg" ForegroundFile="Resources\AppIcon\appicon_fg.svg" Color="#0066F0" />
+    <!-- Splash: optional custom splash image in Resources/Splash/loading.png if provided -->
+    <MauiSplashScreen Include="Resources\Splash\loading.png" Color="#0066F0" BaseSize="200,200" Condition="Exists('Resources\Splash\loading.png')" />
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0066F0" BaseSize="128,128" />
+
+    <!-- Ensure the tab icons are explicitly included so the resizetizer processes them -->
+    <MauiImage Include="Resources\Images\home_new.svg" />
+    <MauiImage Include="Resources\Images\history_new.svg" />
+    <MauiImage Include="Resources\Images\settings_new.svg" />
+    <!-- Loading screen logo for animated splash page -->
+    <MauiImage Include="Resources\Images\pesopal_logo.svg" BaseSize="256,256" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Treat numeric-named image as None to avoid Resizetizer invalid-name checks; it will be copied to valid names during build -->
+    <MauiImage Remove="Resources\Images\10.png" Condition="Exists('Resources\Images\10.png')" />
+    <None Include=".github\workflows\publish-release.yml" />
+    <None Include="Resources\Images\10.png" Condition="Exists('Resources\Images\10.png')" />
+  </ItemGroup>
+
+  <!-- Exclude any tool projects or sources under Tools from the MAUI app build globs -->
+  <ItemGroup>
+    <Compile Remove="Tools\**\*.cs" />
+    <EmbeddedResource Remove="Tools\**\*.*" />
+    <None Remove="Tools\**\*.*" />
+    <Content Remove="Tools\**\*.*" />
+  </ItemGroup>
+  <Target Name="CopyProvidedIcon" BeforeTargets="ResizetizeImages">
+    <!-- If user added Resources/Images/10.png (invalid resource name), copy it to valid filenames before resizetizer runs -->
+    <ItemGroup>
+      <_ProvidedLogo Include="Resources\Images\10.png" Condition="Exists('Resources\Images\10.png')" />
+    </ItemGroup>
+    <MakeDir Directories="Resources\AppIcon" Condition="!Exists('Resources\AppIcon')" />
+    <MakeDir Directories="Resources\Splash" Condition="!Exists('Resources\Splash')" />
+    <Copy SourceFiles="%(_ProvidedLogo.Identity)" DestinationFiles="Resources\AppIcon\loading.png" SkipUnchangedFiles="true" Condition="Exists('%(_ProvidedLogo.Identity)')" />
+    <Copy SourceFiles="%(_ProvidedLogo.Identity)" DestinationFiles="Resources\Splash\loading.png" SkipUnchangedFiles="true" Condition="Exists('%(_ProvidedLogo.Identity)')" />
+  </Target>
+  <ItemGroup>
+    <None Include="tools\generate-latest.ps1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+  <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
+  <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+  <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.12-pre20260709125052" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="Resources\Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Theme.Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Theme.Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Typography.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
+</Project>
